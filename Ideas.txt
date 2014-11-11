@@ -1,19 +1,28 @@
 Empower towers. Take control of 1 tower during attack wave
 Tower gets stronger with new abilities.
+Allow changing tower midfight, incur a cooldown on all abilities when changing?
+
+Maybe ultimate tower ability? 
+Empower tower for minimum time to 'power it up' in order to use it?
+Limit ultimate ability to 1 per tower, to incentivise changing tower?
 
 towers are characters, like a warlock or an archer.
 'maze blocks' for mazing. cost maze block specific resource or general gold?
 Place towers on top of maze block.
 
+Tower upgrading?
+Typical lvl up to get boringly stronger?
+Buy upgrades like, Pointy Wizard Hat - deals more damage. Gloves of the speedy squirrel - increases cast speed.
+How to prevent mass upgrading one tower becoming too powerful?
+Should it be viable, and if so, how viable?
+
 
 Tower abilities:
 
 Warlock:
-Strength:
-High damage over time. Does not require much time per enemy.
+Strength: High damage over time. Does not require much time per enemy.
 
-Theme:
-Weaken enemies
+Theme: Weaken enemies
 
 Passive:
 Cast DOT on enemies, not stacking.
@@ -23,6 +32,10 @@ Empowered:
 
 
 Lightning dude:
+Strength: High range? Good for taking down priority targets? 
+
+Theme:
+
 Passive:
 Randomly strike a single enemy
 
@@ -32,3 +45,36 @@ Chain Lightning
 
 Empower:
 Strong single target lightning strike.
+
+
+Ice dude:
+Strength: Slow down enemies
+
+Theme: Ice, damaging slows/stops
+
+Passive:
+
+Passive/Empower:
+Ice nova (area slow, empowered version can briefly freeze)
+Blizzard
+Glacial spike, either slow or freeze
+Cold weather, global speed debuff when empowered, ranged speed debuff when not
+
+Empower:
+
+
+Necromancer
+Strength: Becomes stronger when enemies die around it.
+
+Theme: Take advantage of the death of enemies.
+
+Passive:
+Create new weak tower on an empty maze block, whenever an enemy dies within range.
+Gather souls of dead enemies
+new weak towers and gathered souls die on round end.
+
+
+Empower:
+Next summoned creature will be stronger, and summoned at targeted maze block
+When passive revives dead, they explode for damage
+Unleash souls in devastating attack
