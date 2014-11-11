@@ -1,0 +1,34 @@
+Empower towers. Take control of 1 tower during attack wave
+Tower gets stronger with new abilities.
+
+towers are characters, like a warlock or an archer.
+'maze blocks' for mazing. cost maze block specific resource or general gold?
+Place towers on top of maze block.
+
+
+Tower abilities:
+
+Warlock:
+Strength:
+High damage over time. Does not require much time per enemy.
+
+Theme:
+Weaken enemies
+
+Passive:
+Cast DOT on enemies, not stacking.
+Curse enemies, reducing some stat.
+
+Empowered:
+
+
+Lightning dude:
+Passive:
+Randomly strike a single enemy
+
+Passive/Empower
+Shoot penetrating lightning
+Chain Lightning
+
+Empower:
+Strong single target lightning strike.
