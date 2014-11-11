@@ -128,7 +128,10 @@ public class TileMap implements TileBasedMap {
 
     @Override
     public boolean blocked(PathFindingContext context, int tx, int ty) {
-        return tileMap[tx][ty].isBlocked();
+        if (tileMap[tx][ty].isBlocked() || tileMap[tx][ty].isUntouchable()) {
+            return true;
+        }
+        return false;
     }
 
     @Override

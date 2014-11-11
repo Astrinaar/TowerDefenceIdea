@@ -23,6 +23,7 @@ public class Tile {
     protected Rectangle bounds;
     protected boolean occupied = false;
     protected boolean blocked = false;
+    protected boolean untouchable = false;
     protected float moveCost;
     protected int id;
 
@@ -32,7 +33,9 @@ public class Tile {
 
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         g.setColor(Color.white);
-        if (blocked) {
+        if (untouchable) {
+            return;
+        } else if (blocked) {
             g.fillRect(bounds.getMinX(), bounds.getMinY(), bounds.getWidth(), bounds.getHeight());
         } else {
             g.drawRect(bounds.getMinX(), bounds.getMinY(), bounds.getWidth(), bounds.getHeight());
@@ -49,6 +52,14 @@ public class Tile {
 
     public void setBounds(Rectangle bounds) {
         this.bounds = bounds;
+    }
+
+    public boolean isUntouchable() {
+        return untouchable;
+    }
+
+    public void setUntouchable(boolean untouchable) {
+        this.untouchable = untouchable;
     }
 
     public boolean isOccupied() {
