@@ -6,6 +6,7 @@
 package states;
 
 import input.InputReceiver;
+import level.TileMap;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -20,6 +21,7 @@ public class PlayState extends BasicGameState {
 
     private final int id = StateHandler.PLAYSTATE;
     private InputReceiver inputReceiver;
+    private TileMap tileMap;
 
     @Override
     public int getID() {
@@ -29,16 +31,18 @@ public class PlayState extends BasicGameState {
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         inputReceiver = new InputReceiver();
+        tileMap = new TileMap();
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-
+        tileMap.render(container, game, g);
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         inputReceiver.reactToInput(container, delta);
+        tileMap.update(container, game, delta);
     }
 
 }
