@@ -64,7 +64,7 @@ Empower:
 
 
 Necromancer
-Strength: Becomes stronger when enemies die around it.
+Strength: Becomes stronger when enemies die around it. Good when there's a lot of enemies
 
 Theme: Take advantage of the death of enemies.
 
@@ -78,3 +78,4 @@ Empower:
 Next summoned creature will be stronger, and summoned at targeted maze block
 When passive revives dead, they explode for damage
 Unleash souls in devastating attack
+Souls as a resource for attacks?
