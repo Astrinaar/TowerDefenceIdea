@@ -29,8 +29,8 @@ public class PathHandler {
     private int endX;
     private int endY;
 
-    public PathHandler(TileBasedMap map) {
-        pathFinder = new AStarPathFinder(map, 500, false);
+    public PathHandler() {
+
     }
 
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
@@ -50,7 +50,8 @@ public class PathHandler {
         return path;
     }
 
-    public void updatePath() {
+    public void updatePath(TileBasedMap map) {
+        pathFinder = new AStarPathFinder(map, 500, false);
         path = pathFinder.findPath(null, startX, startY, endX, endY);
     }
 

@@ -16,9 +16,9 @@ import org.newdawn.slick.geom.Rectangle;
 public class level1 extends Level {
 
     public level1() {
-        startX = 1;
+        startX = 0;
         startY = 5;
-        endX = 5;
+        endX = 19;
         endY = 7;
         mapWidth = 20;
         mapHeight = 15;
@@ -42,6 +42,11 @@ public class level1 extends Level {
         tileMap[5][3].setBlocked(true);
         tileMap[5][4].setBlocked(true);
         tileMap[5][5].setBlocked(true);
+        tileMap[5][6].setBlocked(true);
+        tileMap[5][7].setBlocked(true);
+        tileMap[5][8].setBlocked(true);
+        tileMap[5][9].setBlocked(true);
+        tileMap[5][10].setBlocked(true);
     }
 
 }

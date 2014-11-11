@@ -48,12 +48,13 @@ public class TileMap implements TileBasedMap {
     private PathHandler pathHandler;
 
     public TileMap() {
-        pathHandler = new PathHandler(this);
+        pathHandler = new PathHandler();
         loadMap(1);
     }
 
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         drawMap(container, game, g);
+        pathHandler.render(container, game, g);
     }
 
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
@@ -77,19 +78,28 @@ public class TileMap implements TileBasedMap {
             case 1:
                 currentLevel = new level1();
                 setMapVariables(currentLevel);
+                break;
+            default:
+                return;
         }
+        updatePathHandler(currentLevel);
     }
 
     private void setMapVariables(Level currentLevel) {
         mapWidth = currentLevel.getMapWidth();
         mapHeight = currentLevel.getMapHeight();
         tileMap = currentLevel.getTileMap();
-        pathHandler.setVariables(currentLevel.getStartX(), currentLevel.getStartY(), currentLevel.getEndX(), currentLevel.getEndY());
     }
 
+    private void updatePathHandler(Level currentLevel) {
+        visited = new boolean[mapWidth][mapHeight];
+        pathHandler.setVariables(currentLevel.getStartX(), currentLevel.getStartY(), currentLevel.getEndX(), currentLevel.getEndY());
+        pathHandler.updatePath(this);
+    }
     /*
      Draws the map as a grid for testing purposes.
      */
+
     public void drawMap(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         g.setColor(Color.white);
         for (int x = 0; x < mapWidth; x++) {
