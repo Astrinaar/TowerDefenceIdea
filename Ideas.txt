@@ -16,6 +16,9 @@ Buy upgrades like, Pointy Wizard Hat - deals more damage. Gloves of the speedy s
 How to prevent mass upgrading one tower becoming too powerful?
 Should it be viable, and if so, how viable?
 
+Out of battle upgrades. How to earn? Challenges? Difficulty? Performance?
+Examples of upgrades:
+More maze blocks at the start
 
 Tower abilities:
 
