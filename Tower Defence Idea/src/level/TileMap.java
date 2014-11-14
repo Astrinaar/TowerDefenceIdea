@@ -11,6 +11,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.pathfinding.PathFindingContext;
@@ -91,10 +92,15 @@ public class TileMap implements TileBasedMap {
         tileMap = currentLevel.getTileMap();
     }
 
-    private void updatePathHandler(Level currentLevel) {
+    public void updatePathHandler(Level currentLevel) {
         visited = new boolean[mapWidth][mapHeight];
         pathHandler.setVariables(currentLevel.getStartX(), currentLevel.getStartY(), currentLevel.getEndX(), currentLevel.getEndY());
-        pathHandler.updatePath(this);
+        pathHandler.updatePathNewMap(this);
+    }
+
+    public void updatePath() {
+        visited = new boolean[mapWidth][mapHeight];
+        pathHandler.updatePath();
     }
     /*
      Draws the map as a grid for testing purposes.
@@ -109,6 +115,17 @@ public class TileMap implements TileBasedMap {
                 t.render(container, game, g);
             }
         }
+    }
+
+    public Tile getTileAtPoint(float x, float y) {
+        for (Tile[] ta : tileMap) {
+            for (Tile t : ta) {
+                if (t.getBounds().contains(new Point(x, y))) {
+                    return t;
+                }
+            }
+        }
+        return null;
     }
 
     @Override
@@ -138,8 +155,8 @@ public class TileMap implements TileBasedMap {
     public float getCost(PathFindingContext context, int tx, int ty) {
         return tileMap[tx][ty].getMoveCost();
     }
-    
-    public Tile getTile(int x, int y){
+
+    public Tile getTile(int x, int y) {
         return tileMap[x][y];
     }
 }

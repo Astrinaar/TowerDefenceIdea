@@ -5,6 +5,7 @@
  */
 package states;
 
+import build.BuildTool;
 import input.InputReceiver;
 import level.TileMap;
 import org.newdawn.slick.GameContainer;
@@ -22,6 +23,7 @@ public class PlayState extends BasicGameState {
     private final int id = StateHandler.PLAYSTATE;
     private InputReceiver inputReceiver;
     private TileMap tileMap;
+    private BuildTool buildTool;
 
     @Override
     public int getID() {
@@ -30,8 +32,9 @@ public class PlayState extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        inputReceiver = new InputReceiver();
         tileMap = new TileMap();
+        buildTool = new BuildTool(tileMap);
+        inputReceiver = new InputReceiver(buildTool);
     }
 
     @Override

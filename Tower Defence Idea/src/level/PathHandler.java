@@ -54,8 +54,17 @@ public class PathHandler {
         return path;
     }
 
-    public void updatePath(TileBasedMap map) {
+    public void updatePathNewMap(TileBasedMap map) {
         tileMap = (TileMap) map;
+        pathFinder = new AStarPathFinder(tileMap, 500, false);
+        path = pathFinder.findPath(null, startX, startY, endX, endY);
+        if (path != null) {
+            resetPathFindingGraphicForTiles();
+            setPathFindingGraphicForTiles();
+        }
+    }
+    
+    public void updatePath() {        
         pathFinder = new AStarPathFinder(tileMap, 500, false);
         path = pathFinder.findPath(null, startX, startY, endX, endY);
         if (path != null) {
