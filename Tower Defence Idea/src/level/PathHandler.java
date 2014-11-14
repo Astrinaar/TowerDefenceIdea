@@ -5,6 +5,7 @@
  */
 package level;
 
+import java.util.ArrayList;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -28,16 +29,19 @@ public class PathHandler {
     private int startY;
     private int endX;
     private int endY;
+    private TileMap tileMap;
+    private ArrayList<Tile> currentPath;
 
     public PathHandler() {
-
+        currentPath = new ArrayList<>();
     }
 
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         if (path != null) {
             for (int x = 0; x < path.getLength(); x++) {
                 g.setColor(Color.yellow);
-                g.fillRect(path.getStep(x).getX() * 20, path.getStep(x).getY() * 20, 20, 20);
+                //g.fillRect(path.getStep(x).getX() * 20, path.getStep(x).getY() * 20, 20, 20);
+                tileMap.getTile(path.getStep(x).getX(), path.getStep(x).getY());
             }
         }
     }
@@ -51,8 +55,28 @@ public class PathHandler {
     }
 
     public void updatePath(TileBasedMap map) {
-        pathFinder = new AStarPathFinder(map, 500, false);
+        tileMap = (TileMap) map;
+        pathFinder = new AStarPathFinder(tileMap, 500, false);
         path = pathFinder.findPath(null, startX, startY, endX, endY);
+        if (path != null) {
+            resetPathFindingGraphicForTiles();
+            setPathFindingGraphicForTiles();
+        }
+    }
+
+    private void setPathFindingGraphicForTiles() {
+        for (int x = 0; x < path.getLength(); x++) {
+            Tile t = tileMap.getTile(path.getStep(x).getX(), path.getStep(x).getY());
+            t.setPathFindingGraphic(1);
+            currentPath.add(t);
+        }
+    }
+
+    private void resetPathFindingGraphicForTiles() {
+        for (Tile t : currentPath) {
+            t.setPathFindingGraphic(0);
+        }
+        currentPath.clear();
     }
 
     public void setVariables(int startX, int startY, int endX, int endY) {

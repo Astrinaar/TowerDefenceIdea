@@ -138,4 +138,8 @@ public class TileMap implements TileBasedMap {
     public float getCost(PathFindingContext context, int tx, int ty) {
         return tileMap[tx][ty].getMoveCost();
     }
+    
+    public Tile getTile(int x, int y){
+        return tileMap[x][y];
+    }
 }

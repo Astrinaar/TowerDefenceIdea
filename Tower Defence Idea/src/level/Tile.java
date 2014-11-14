@@ -27,6 +27,13 @@ public class Tile {
     protected float moveCost;
     protected int id;
 
+    /*
+     This number is used to determine what graphic a Tile should use if it is part of the path.
+     0 means not part of the path. The other numbers indicate which direction the next step in the path is, which determines which graphic to use
+     1 is up, 2 is right, 3 is down, 4 is left.
+     */
+    protected int pathFindingGraphic = 0;
+
     public Tile(Rectangle bounds) {
         this.bounds = bounds;
     }
@@ -40,10 +47,20 @@ public class Tile {
         } else {
             g.drawRect(bounds.getMinX(), bounds.getMinY(), bounds.getWidth(), bounds.getHeight());
         }
+        drawPathGraphic(container, game, g);
     }
 
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 
+    }
+
+    private void drawPathGraphic(GameContainer container, StateBasedGame game, Graphics g) {
+        if (pathFindingGraphic == 0) {
+            return;
+        } else if (pathFindingGraphic == 1) {
+            g.setColor(Color.red);
+            g.fillRect(bounds.getMinX(), bounds.getMinY(), bounds.getWidth(), bounds.getHeight());
+        }
     }
 
     public Rectangle getBounds() {
@@ -92,6 +109,14 @@ public class Tile {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getPathFindingGraphic() {
+        return pathFindingGraphic;
+    }
+
+    public void setPathFindingGraphic(int pathFindingGraphic) {
+        this.pathFindingGraphic = pathFindingGraphic;
     }
 
 }
