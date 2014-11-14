@@ -21,7 +21,6 @@ public class BuildTool {
     }
 
     public void testTileBlock() {
-        System.out.println(hoveredOverTile);
         if (hoveredOverTile != null) {
             hoveredOverTile.setBlocked(true);
             tileMap.updatePath();

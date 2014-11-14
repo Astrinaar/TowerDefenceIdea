@@ -56,21 +56,22 @@ public class PathHandler {
 
     public void updatePathNewMap(TileBasedMap map) {
         tileMap = (TileMap) map;
-        pathFinder = new AStarPathFinder(tileMap, 500, false);
+        pathFinder = new AStarPathFinder(tileMap, 500, false, new CreepHeuristic());
         path = pathFinder.findPath(null, startX, startY, endX, endY);
         if (path != null) {
             resetPathFindingGraphicForTiles();
             setPathFindingGraphicForTiles();
         }
     }
-    
-    public void updatePath() {        
-        pathFinder = new AStarPathFinder(tileMap, 500, false);
+
+    public void updatePath() {
+        pathFinder = new AStarPathFinder(tileMap, 500, false, new CreepHeuristic());
         path = pathFinder.findPath(null, startX, startY, endX, endY);
         if (path != null) {
             resetPathFindingGraphicForTiles();
             setPathFindingGraphicForTiles();
         }
+        System.out.println(path.getLength());
     }
 
     private void setPathFindingGraphicForTiles() {
