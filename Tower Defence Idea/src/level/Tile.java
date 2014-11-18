@@ -5,6 +5,7 @@
  */
 package level;
 
+import extendables.UpdateRender;
 import java.util.ArrayList;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -18,7 +19,7 @@ import org.newdawn.slick.state.StateBasedGame;
  *
  * @author PK
  */
-public class Tile {
+public class Tile implements UpdateRender {
 
     protected Rectangle bounds;
     protected boolean occupied = false;
@@ -38,6 +39,7 @@ public class Tile {
         this.bounds = bounds;
     }
 
+    @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         g.setColor(Color.white);
         if (untouchable) {
@@ -50,6 +52,7 @@ public class Tile {
         drawPathGraphic(container, game, g);
     }
 
+    @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 
     }

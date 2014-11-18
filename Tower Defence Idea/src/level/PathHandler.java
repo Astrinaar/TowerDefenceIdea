@@ -5,6 +5,7 @@
  */
 package level;
 
+import extendables.UpdateRender;
 import java.util.ArrayList;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -21,7 +22,7 @@ import org.newdawn.slick.util.pathfinding.TileBasedMap;
  *
  * @author PK
  */
-public class PathHandler {
+public class PathHandler implements UpdateRender {
 
     private PathFinder pathFinder;
     private Path path;
@@ -36,6 +37,7 @@ public class PathHandler {
         currentPath = new ArrayList<>();
     }
 
+    @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         if (path != null) {
             for (int x = 0; x < path.getLength(); x++) {
@@ -46,6 +48,7 @@ public class PathHandler {
         }
     }
 
+    @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 
     }
@@ -71,7 +74,6 @@ public class PathHandler {
             resetPathFindingGraphicForTiles();
             setPathFindingGraphicForTiles();
         }
-        System.out.println(path.getLength());
     }
 
     private void setPathFindingGraphicForTiles() {

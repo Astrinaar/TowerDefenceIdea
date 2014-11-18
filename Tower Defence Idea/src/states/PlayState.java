@@ -6,11 +6,14 @@
 package states;
 
 import build.BuildTool;
+import enemy.EnemyManager;
+import enemy.TestEnemy;
 import input.InputReceiver;
 import level.TileMap;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -24,6 +27,9 @@ public class PlayState extends BasicGameState {
     private InputReceiver inputReceiver;
     private TileMap tileMap;
     private BuildTool buildTool;
+    private EnemyManager enemyManager;
+
+    private TestEnemy test;
 
     @Override
     public int getID() {
@@ -35,11 +41,14 @@ public class PlayState extends BasicGameState {
         tileMap = new TileMap();
         buildTool = new BuildTool(tileMap);
         inputReceiver = new InputReceiver(buildTool);
+        enemyManager = new EnemyManager();
+        test = new TestEnemy(100, 10, new Point(200, 200));
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         tileMap.render(container, game, g);
+        test.render(container, game, g);
     }
 
     @Override

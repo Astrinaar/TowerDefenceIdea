@@ -6,6 +6,7 @@
 package level;
 
 import extendables.Level;
+import extendables.UpdateRender;
 import level.levels.level1;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -21,7 +22,7 @@ import org.newdawn.slick.util.pathfinding.TileBasedMap;
  *
  * @author PK
  */
-public class TileMap implements TileBasedMap {
+public class TileMap implements TileBasedMap, UpdateRender {
     /*
      2 dimensional array of Tiles, which will be the tilemap.
      */
@@ -38,7 +39,7 @@ public class TileMap implements TileBasedMap {
     /*
      The size of each tile.
      */
-    public static int tileSize = 20;
+    public static int tileSize = 40;
     /*
      A 2 dimensional array of booleans used by the A* pathfinder.
      */
@@ -53,11 +54,13 @@ public class TileMap implements TileBasedMap {
         loadMap(1);
     }
 
+    @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         drawMap(container, game, g);
         pathHandler.render(container, game, g);
     }
 
+    @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 
     }
