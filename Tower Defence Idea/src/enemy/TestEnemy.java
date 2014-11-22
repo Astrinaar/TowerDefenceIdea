@@ -24,15 +24,13 @@ import org.newdawn.slick.util.pathfinding.Path;
 public class TestEnemy extends Enemy {
 
     public TestEnemy(Point position, ArrayList<Tile> path) {
-        super(100, 5, position, path);
+        super(100, 0.05f, position, path);
         texture = ImgArchive.getPlayer();
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         super.render(container, game, g);
-        g.setColor(Color.white);
-        g.draw(position);
     }
 
 }

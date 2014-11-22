@@ -28,7 +28,8 @@ public class Enemy implements UpdateRender {
     protected Image texture;
     protected Point position;
     protected ArrayList<Tile> path;
-    protected int previousStep = 0;
+    protected int previousStep = -1;
+    protected Point nextDestination;
 
     public Enemy(float maxLife, float moveSpeed, Point position, ArrayList<Tile> path) {
         this.maxLife = maxLife;
@@ -36,6 +37,7 @@ public class Enemy implements UpdateRender {
         this.moveSpeed = moveSpeed;
         this.position = position;
         this.path = path;
+        getNextDestination();
     }
 
     public void receiveDmg(float damage) {
@@ -59,12 +61,46 @@ public class Enemy implements UpdateRender {
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+        move(delta);
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         texture.draw(position.getX() - (texture.getWidth() / 2), position.getY() - (texture.getHeight() / 2));
         drawHealthBar(g);
+    }
+
+    private void move(int delta) {
+        int errorMargin = 1;
+        if (position.getX() - nextDestination.getX() < errorMargin && position.getX() - nextDestination.getX() > -errorMargin) {
+            if (position.getY() > nextDestination.getY()) {
+                //move up
+                position.setY(position.getY() - moveSpeed * delta);
+            } else {
+                //move down
+                position.setY(position.getY() + moveSpeed * delta);
+            }
+        } else if (position.getX() > nextDestination.getX()) {
+            //move left
+            position.setX(position.getX() - moveSpeed * delta);
+        } else {
+            //move right
+            position.setX(position.getX() + moveSpeed * delta);
+        }
+        if (position.getX() - nextDestination.getX() < errorMargin && position.getX() - nextDestination.getX() > -errorMargin) {
+            if (position.getY() - nextDestination.getY() < errorMargin && position.getY() - nextDestination.getY() > -errorMargin) {
+                try{
+                getNextDestination();
+                } catch (IndexOutOfBoundsException ex){
+                    //Reached destination
+                }
+            }
+        }
+    }
+
+    private void getNextDestination() {
+        previousStep++;
+        nextDestination = path.get(previousStep + 1).getPosition();
     }
 
     public Point getPosition() {
