@@ -5,6 +5,7 @@
  */
 package level;
 
+import enemy.EnemyCreator;
 import extendables.Level;
 import extendables.UpdateRender;
 import level.levels.level1;
@@ -39,7 +40,7 @@ public class TileMap implements TileBasedMap, UpdateRender {
     /*
      The size of each tile.
      */
-    public static int tileSize = 40;
+    public static int tileSize = 45;
     /*
      A 2 dimensional array of booleans used by the A* pathfinder.
      */
@@ -48,10 +49,13 @@ public class TileMap implements TileBasedMap, UpdateRender {
      The class handling all pathfinding.
      */
     private PathHandler pathHandler;
+    private EnemyCreator enemyCreator;
 
-    public TileMap() {
-        pathHandler = new PathHandler();
+    public TileMap(EnemyCreator enemyCreator) {
+        pathHandler = new PathHandler(this);
+        this.enemyCreator = enemyCreator;
         loadMap(1);
+        enemyCreator.createTestEnemy();
     }
 
     @Override
@@ -76,6 +80,11 @@ public class TileMap implements TileBasedMap, UpdateRender {
         }
     }
 
+    /**
+     * Loads a new map, setting new variables and updating the pathHandler.
+     *
+     * @param level The level to load.
+     */
     public void loadMap(int level) {
         Level currentLevel = null;
         switch (level) {
@@ -95,15 +104,28 @@ public class TileMap implements TileBasedMap, UpdateRender {
         tileMap = currentLevel.getTileMap();
     }
 
+    /**
+     * Updates the pathHandler when loading a new level, setting the starting
+     * point and the end point and updating the enemyCreator.
+     *
+     * @param currentLevel The new level that the pathHandler should use.
+     */
     public void updatePathHandler(Level currentLevel) {
         visited = new boolean[mapWidth][mapHeight];
-        pathHandler.setVariables(currentLevel.getStartX(), currentLevel.getStartY(), currentLevel.getEndX(), currentLevel.getEndY());
-        pathHandler.updatePathNewMap(this);
+        pathHandler.setVariables(currentLevel.getStart(), currentLevel.getEnd());
+        pathHandler.updatePath();
+        enemyCreator.setStartPosition(tileMap[(int) currentLevel.getStart().getX()][(int) currentLevel.getStart().getY()].getPosition());
+        enemyCreator.setPath(pathHandler.getCurrentPath());
     }
 
+    /**
+     * Updates the path when a change to the map happens and updates the
+     * enemyCreator;
+     */
     public void updatePath() {
         visited = new boolean[mapWidth][mapHeight];
         pathHandler.updatePath();
+        enemyCreator.setPath(pathHandler.getCurrentPath());
     }
     /*
      Draws the map as a grid for testing purposes.

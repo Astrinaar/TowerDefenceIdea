@@ -31,7 +31,7 @@ public class EnemyManager implements UpdateRender {
     public EnemyManager() {
         enemies = new ArrayList<>();
         comparatorY = new ComparatorY();
-        enemies.add(new TestEnemy(100, 100, new Point(200, 200)));
+
     }
 
     @Override
@@ -55,6 +55,11 @@ public class EnemyManager implements UpdateRender {
             Enemy e = enemyiterator.next();
             e.render(container, game, g);
         }
+    }
+
+    public void addEnemy(Enemy enemy) {
+        enemies.add(enemy);
+        System.out.println(enemy);
     }
 
 }

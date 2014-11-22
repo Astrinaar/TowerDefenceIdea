@@ -11,6 +11,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.pathfinding.AStarPathFinder;
 import org.newdawn.slick.util.pathfinding.Mover;
@@ -33,8 +34,9 @@ public class PathHandler implements UpdateRender {
     private TileMap tileMap;
     private ArrayList<Tile> currentPath;
 
-    public PathHandler() {
+    public PathHandler(TileMap map) {
         currentPath = new ArrayList<>();
+        tileMap = map;
     }
 
     @Override
@@ -55,16 +57,6 @@ public class PathHandler implements UpdateRender {
 
     public Path getPath() {
         return path;
-    }
-
-    public void updatePathNewMap(TileBasedMap map) {
-        tileMap = (TileMap) map;
-        pathFinder = new AStarPathFinder(tileMap, 500, false, new CreepHeuristic());
-        path = pathFinder.findPath(null, startX, startY, endX, endY);
-        if (path != null) {
-            resetPathFindingGraphicForTiles();
-            setPathFindingGraphicForTiles();
-        }
     }
 
     public void updatePath() {
@@ -91,11 +83,11 @@ public class PathHandler implements UpdateRender {
         currentPath.clear();
     }
 
-    public void setVariables(int startX, int startY, int endX, int endY) {
-        this.startX = startX;
-        this.startY = startY;
-        this.endX = endX;
-        this.endY = endY;
+    public void setVariables(Point start, Point end) {
+        startX = (int) start.getX();
+        startY = (int) start.getY();
+        endX = (int) end.getX();
+        endY = (int) end.getY();
     }
 
     public void setStartX(int startX) {
@@ -112,6 +104,10 @@ public class PathHandler implements UpdateRender {
 
     public void setEndY(int endY) {
         this.endY = endY;
+    }
+
+    public ArrayList<Tile> getCurrentPath() {
+        return currentPath;
     }
 
 }

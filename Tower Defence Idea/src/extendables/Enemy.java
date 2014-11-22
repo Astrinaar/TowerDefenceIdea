@@ -5,6 +5,8 @@
  */
 package extendables;
 
+import java.util.ArrayList;
+import level.Tile;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,6 +14,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.util.pathfinding.Path;
 
 /**
  *
@@ -24,12 +27,15 @@ public class Enemy implements UpdateRender {
     protected float moveSpeed;
     protected Image texture;
     protected Point position;
+    protected ArrayList<Tile> path;
+    protected int previousStep = 0;
 
-    public Enemy(float maxLife, float moveSpeed, Point position) {
+    public Enemy(float maxLife, float moveSpeed, Point position, ArrayList<Tile> path) {
         this.maxLife = maxLife;
         currentLife = maxLife;
         this.moveSpeed = moveSpeed;
         this.position = position;
+        this.path = path;
     }
 
     public void receiveDmg(float damage) {
@@ -75,6 +81,11 @@ public class Enemy implements UpdateRender {
 
     public Image getTexture() {
         return texture;
+    }
+
+    @Override
+    public String toString() {
+        return "Enemy{" + "position=" + position.getX() + "," + position.getY();
     }
 
 }

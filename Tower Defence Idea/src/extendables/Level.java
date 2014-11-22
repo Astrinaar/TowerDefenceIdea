@@ -7,6 +7,7 @@ package extendables;
 
 import level.Tile;
 import level.TileMap;
+import org.newdawn.slick.geom.Point;
 
 /**
  *
@@ -14,10 +15,8 @@ import level.TileMap;
  */
 public abstract class Level {
 
-    protected int startX;
-    protected int startY;
-    protected int endX;
-    protected int endY;
+    protected Point start;
+    protected Point end;
     protected int mapWidth;
     protected int mapHeight;
     protected int tileSize = TileMap.tileSize;
@@ -25,20 +24,20 @@ public abstract class Level {
 
     public abstract void createMap();
 
-    public int getStartX() {
-        return startX;
+    public Point getStart() {
+        return start;
     }
 
-    public int getStartY() {
-        return startY;
+    public void setStart(Point start) {
+        this.start = start;
     }
 
-    public int getEndX() {
-        return endX;
+    public Point getEnd() {
+        return end;
     }
 
-    public int getEndY() {
-        return endY;
+    public void setEnd(Point end) {
+        this.end = end;
     }
 
     public int getMapWidth() {

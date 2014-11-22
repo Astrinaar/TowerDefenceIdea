@@ -12,6 +12,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -27,6 +28,7 @@ public class Tile implements UpdateRender {
     protected boolean untouchable = false;
     protected float moveCost;
     protected int id;
+    protected Point position;
 
     /*
      This number is used to determine what graphic a Tile should use if it is part of the path.
@@ -37,6 +39,7 @@ public class Tile implements UpdateRender {
 
     public Tile(Rectangle bounds) {
         this.bounds = bounds;
+        position = new Point((int) bounds.getCenterX(), (int) bounds.getCenterY());
     }
 
     @Override
@@ -50,6 +53,8 @@ public class Tile implements UpdateRender {
             g.drawRect(bounds.getMinX(), bounds.getMinY(), bounds.getWidth(), bounds.getHeight());
         }
         drawPathGraphic(container, game, g);
+        g.setColor(Color.white);
+        g.fillRect(position.getX(), position.getY(), 1, 1);
     }
 
     @Override
@@ -120,6 +125,10 @@ public class Tile implements UpdateRender {
 
     public void setPathFindingGraphic(int pathFindingGraphic) {
         this.pathFindingGraphic = pathFindingGraphic;
+    }
+
+    public Point getPosition() {
+        return position;
     }
 
 }

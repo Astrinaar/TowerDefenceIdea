@@ -6,6 +6,7 @@
 package states;
 
 import build.BuildTool;
+import enemy.EnemyCreator;
 import enemy.EnemyManager;
 import enemy.TestEnemy;
 import input.InputReceiver;
@@ -28,8 +29,7 @@ public class PlayState extends BasicGameState {
     private TileMap tileMap;
     private BuildTool buildTool;
     private EnemyManager enemyManager;
-
-    private TestEnemy test;
+    private EnemyCreator enemyCreator;
 
     @Override
     public int getID() {
@@ -38,23 +38,25 @@ public class PlayState extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        tileMap = new TileMap();
+        enemyManager = new EnemyManager();
+        enemyCreator = new EnemyCreator(enemyManager);
+        tileMap = new TileMap(enemyCreator);
         buildTool = new BuildTool(tileMap);
         inputReceiver = new InputReceiver(buildTool);
-        enemyManager = new EnemyManager();
-        test = new TestEnemy(100, 10, new Point(200, 200));
+
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         tileMap.render(container, game, g);
-        test.render(container, game, g);
+        enemyManager.render(container, game, g);
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         inputReceiver.reactToInput(container, delta);
         tileMap.update(container, game, delta);
+        enemyManager.update(container, game, delta);
     }
 
 }

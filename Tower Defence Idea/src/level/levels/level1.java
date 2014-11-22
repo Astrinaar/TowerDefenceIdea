@@ -7,6 +7,7 @@ package level.levels;
 
 import extendables.Level;
 import level.Tile;
+import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.geom.Rectangle;
 
 /**
@@ -16,12 +17,10 @@ import org.newdawn.slick.geom.Rectangle;
 public class level1 extends Level {
 
     public level1() {
-        startX = 0;
-        startY = 5;
-        endX = 19;
-        endY = 7;
-        mapWidth = 20;
-        mapHeight = 15;
+        start = new Point(0, 5);
+        end = new Point(24, 7);
+        mapWidth = 25;
+        mapHeight = 10;
         createMap();
     }
 
@@ -48,32 +47,14 @@ public class level1 extends Level {
         tileMap[0][7].setUntouchable(true);
         tileMap[0][8].setUntouchable(true);
         tileMap[0][9].setUntouchable(true);
-        tileMap[0][10].setUntouchable(true);
-        tileMap[0][11].setUntouchable(true);
-        tileMap[0][12].setUntouchable(true);
-        tileMap[0][13].setUntouchable(true);
-        tileMap[0][14].setUntouchable(true);
 
         tileMap[1][0].setUntouchable(true);
         tileMap[1][1].setUntouchable(true);
         tileMap[1][2].setUntouchable(true);
-        tileMap[1][12].setUntouchable(true);
-        tileMap[1][13].setUntouchable(true);
-        tileMap[1][14].setUntouchable(true);
+        tileMap[1][7].setUntouchable(true);
+        tileMap[1][8].setUntouchable(true);
+        tileMap[1][9].setUntouchable(true);
 
-        
-        tileMap[11][9].setUntouchable(true);
-        tileMap[11][10].setUntouchable(true);
-        tileMap[11][11].setUntouchable(true);
-        tileMap[11][12].setUntouchable(true);
-        tileMap[11][13].setUntouchable(true);
-        tileMap[11][14].setUntouchable(true);
-        tileMap[12][9].setUntouchable(true);
-        tileMap[12][10].setUntouchable(true);
-        tileMap[12][11].setUntouchable(true);
-        tileMap[12][12].setUntouchable(true);
-        tileMap[12][13].setUntouchable(true);
-        tileMap[12][14].setUntouchable(true);
     }
 
     private void setBlocked() {
@@ -86,11 +67,6 @@ public class level1 extends Level {
         tileMap[5][7].setBlocked(true);
         tileMap[5][8].setBlocked(true);
         tileMap[5][9].setBlocked(true);
-        tileMap[5][10].setBlocked(true);
-        tileMap[5][11].setBlocked(true);
-        tileMap[5][12].setBlocked(true);
-        tileMap[5][13].setBlocked(true);
-        tileMap[5][14].setBlocked(true);
 
         tileMap[8][0].setBlocked(true);
         tileMap[8][1].setBlocked(true);
@@ -101,8 +77,7 @@ public class level1 extends Level {
         tileMap[8][6].setBlocked(true);
         tileMap[8][7].setBlocked(true);
         tileMap[8][8].setBlocked(true);
-        tileMap[8][9].setBlocked(true);
-        tileMap[8][10].setBlocked(true);
+
     }
 
 }
