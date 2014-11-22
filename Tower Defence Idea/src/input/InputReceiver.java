@@ -35,7 +35,7 @@ public class InputReceiver {
     }
 
     private void buildToolInput(GameContainer container) {
-        buildTool.setHoveredOverTile(input.getMouseX(), input.getAbsoluteMouseY());
+        buildTool.setHoveredOverTile(input.getMouseX(), input.getMouseY());
         if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
             buildTool.testTileBlock();
         }

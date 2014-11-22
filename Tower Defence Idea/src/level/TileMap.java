@@ -69,17 +69,6 @@ public class TileMap implements TileBasedMap, UpdateRender {
 
     }
 
-    /*
-     Creates the amount of tiles specified by mapHeight and mapWidth in the tileSize.
-     */
-    private void populateTileMap() {
-        for (int x = 0; x < mapWidth; x++) {
-            for (int y = 0; y < mapHeight; y++) {
-                tileMap[x][y] = new Tile(new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize));
-            }
-        }
-    }
-
     /**
      * Loads a new map, setting new variables and updating the pathHandler.
      *
@@ -127,10 +116,10 @@ public class TileMap implements TileBasedMap, UpdateRender {
         pathHandler.updatePath();
         enemyCreator.setPath(pathHandler.getCurrentPath());
     }
-    /*
-     Draws the map as a grid for testing purposes.
-     */
 
+    /**
+     * Draws the map as a grid for testing purposes.
+     */
     public void drawMap(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         g.setColor(Color.white);
         for (int x = 0; x < mapWidth; x++) {

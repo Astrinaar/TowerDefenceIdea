@@ -70,6 +70,9 @@ public class Enemy implements UpdateRender {
         drawHealthBar(g);
     }
 
+    /*
+     Moves towards the nextDestination and updates the next destination when reached.
+     */
     private void move(int delta) {
         int errorMargin = 1;
         if (position.getX() - nextDestination.getX() < errorMargin && position.getX() - nextDestination.getX() > -errorMargin) {
@@ -87,11 +90,12 @@ public class Enemy implements UpdateRender {
             //move right
             position.setX(position.getX() + moveSpeed * delta);
         }
+        //Check if we have reached the next destination
         if (position.getX() - nextDestination.getX() < errorMargin && position.getX() - nextDestination.getX() > -errorMargin) {
             if (position.getY() - nextDestination.getY() < errorMargin && position.getY() - nextDestination.getY() > -errorMargin) {
-                try{
-                getNextDestination();
-                } catch (IndexOutOfBoundsException ex){
+                try {
+                    getNextDestination();
+                } catch (IndexOutOfBoundsException ex) {
                     //Reached destination
                 }
             }
